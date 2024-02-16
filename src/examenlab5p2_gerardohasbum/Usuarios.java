@@ -11,7 +11,7 @@ import java.util.Date;
  * @author ghasb
  */
 public class Usuarios {
-    
+
     String nombre, apellido, password, sexo, departamento, identidad;
     Date nacimiento;
 
@@ -86,7 +86,7 @@ public class Usuarios {
 
     @Override
     public String toString() {
-        return "Usuarios{" + "nombre=" + nombre + ", apellido=" + apellido + ", password=" + password + ", sexo=" + sexo + ", departamento=" + departamento + ", identidad=" + identidad + ", nacimiento=" + nacimiento + '}';
+        return "Nombre completo: " + nombre + " " + apellido + "\nPassword: " + password + "\nSexo: " + sexo + "\nDepartamento: " + departamento + "\nIdentidad: " + identidad + "\nFecha de nacimiento: " + nacimiento;
     }
-    
+
 }

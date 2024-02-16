@@ -1,13 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package examenlab5p2_gerardohasbum;
 
-/**
- *
- * @author ghasb
- */
-public class Civil {
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Civil extends Usuarios{
+    
+    ArrayList<Tramites> tramites = new ArrayList();
+
+    public Civil() {
+    }
+
+    public Civil(String nombre, String apellido, String password, String sexo, String departamento, String identidad, Date nacimiento) {
+        super(nombre, apellido, password, sexo, departamento, identidad, nacimiento);
+    }
+
+    @Override
+    public String toString() {
+        return "Civil: \n" +super.toString()+ "\n\nTramites:\n" + tramites;
+    }
+    
+    
     
 }

@@ -4,6 +4,8 @@
  */
 package examenlab5p2_gerardohasbum;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ghasb
@@ -17,6 +19,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         initComponents();
     }
 
+    ArrayList<Usuarios> usuarios = new ArrayList();
     
     
     @SuppressWarnings("unchecked")
@@ -64,6 +67,11 @@ public class ServicioBoroa extends javax.swing.JFrame {
         bLogin.setBackground(new java.awt.Color(51, 51, 255));
         bLogin.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         bLogin.setText("LOGIN");
+        bLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bLoginMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
@@ -129,6 +137,13 @@ public class ServicioBoroa extends javax.swing.JFrame {
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordActionPerformed
+
+    private void bLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLoginMouseClicked
+        boolean success = false;
+        
+        
+        
+    }//GEN-LAST:event_bLoginMouseClicked
 
     /**
      * @param args the command line arguments
