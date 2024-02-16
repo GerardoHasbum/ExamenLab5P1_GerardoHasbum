@@ -40,6 +40,19 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         IdentidadLista = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        tfNomMod = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tfApeMod = new javax.swing.JTextField();
+        jNacCho = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        tfPassMod = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        SexoMod = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        Departemento = new javax.swing.JComboBox<>();
+        bModificar = new javax.swing.JButton();
         CerrarSesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         UsuarioActivo = new javax.swing.JLabel();
@@ -50,6 +63,33 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         bLogin = new javax.swing.JButton();
         tfNom = new javax.swing.JTextField();
+
+        EmpleadoScreen.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                EmpleadoScreenMouseMoved(evt);
+            }
+        });
+        EmpleadoScreen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                EmpleadoScreenFocusGained(evt);
+            }
+        });
+        EmpleadoScreen.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                EmpleadoScreenComponentShown(evt);
+            }
+        });
+
+        EmpleadoPanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                EmpleadoPanelFocusGained(evt);
+            }
+        });
+        EmpleadoPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmpleadoPanelMouseClicked(evt);
+            }
+        });
 
         jLabel4.setText("Informacion de Civiles: ");
 
@@ -96,7 +136,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -122,11 +162,48 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
         EmpleadoPanel.addTab("Inforamacion Civiles", jPanel1);
 
-        IdentidadLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "xxxx-xxxx-xxxxx" }));
         IdentidadLista.setToolTipText("");
+        IdentidadLista.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                IdentidadListaItemStateChanged(evt);
+            }
+        });
+        IdentidadLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IdentidadListaMouseClicked(evt);
+            }
+        });
         IdentidadLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IdentidadListaActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Nombre: ");
+
+        jLabel7.setText("Apellido: ");
+
+        jLabel8.setText("Fecha de Nacimiento");
+
+        jLabel9.setText("Contraseña");
+
+        jLabel10.setText("Sexo: ");
+
+        SexoMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Masculino", "Femenino" }));
+
+        jLabel11.setText("Departamento: ");
+
+        Departemento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Francisco Morazan", "Cortes", "Comayagua" }));
+
+        bModificar.setText("Modificar");
+        bModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bModificarMouseClicked(evt);
+            }
+        });
+        bModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bModificarActionPerformed(evt);
             }
         });
 
@@ -136,15 +213,59 @@ public class ServicioBoroa extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(550, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SexoMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 119, Short.MAX_VALUE)
+                            .addComponent(tfPassMod, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNomMod, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Departemento, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE))
+                        .addGap(199, 199, 199)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfApeMod)
+                            .addComponent(jNacCho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(611, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNomMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfApeMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jNacCho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPassMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SexoMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Departemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bModificar))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         EmpleadoPanel.addTab("Modificacion Civiles", jPanel2);
@@ -306,13 +427,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
             EmpleadoScreen.pack();
             EmpleadoScreen.setVisible(true);
             UsuarioActivo.setText(empcom);
-            lista.add(civ);
-            
-            for (int i = 0; i < lista.size(); i++) {
-
-                IdentidadLista.addItem(lista.get(i).getIdentidad());
-
-            }
 
         } else if ((inpnom.equals(civcom) && inppass.equals(civpass))) {
 
@@ -326,8 +440,10 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
         // TODO add your handling code here:
+        IdentidadLista.removeAllItems();
         this.setVisible(true);
         EmpleadoScreen.setVisible(false);
+        
     }//GEN-LAST:event_CerrarSesionMouseClicked
 
     private void IdentidadListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentidadListaActionPerformed
@@ -335,6 +451,103 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
         String id = (String) IdentidadLista.getSelectedItem();
     }//GEN-LAST:event_IdentidadListaActionPerformed
+
+    private void bModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_bModificarActionPerformed
+
+    private void bModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bModificarMouseClicked
+        // TODO add your handling code here:
+        int pos = 0;
+        for (int i = 0; i < lista.size(); i++) {
+
+            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
+                pos = i;
+            }
+
+        }
+
+        lista.get(pos).setNombre(tfNomMod.getText());
+        lista.get(pos).setApellido(tfApeMod.getText());
+        lista.get(pos).setDepartamento((String) Departemento.getSelectedItem());
+        lista.get(pos).setNacimiento(jNacCho.getDate());
+        lista.get(pos).setPassword(tfPassMod.getText());
+        lista.get(pos).setSexo((String) SexoMod.getSelectedItem());
+
+    }//GEN-LAST:event_bModificarMouseClicked
+
+    private void EmpleadoPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoPanelFocusGained
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_EmpleadoPanelFocusGained
+
+    private void EmpleadoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadoPanelMouseClicked
+        // TODO add your handling code here:
+        int pos = 0;
+        for (int i = 0; i < lista.size(); i++) {
+
+            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
+                pos = i;
+            }
+
+        }
+        tfNomMod.setText(lista.get(pos).getNombre());
+        tfApeMod.setText(lista.get(pos).getApellido());
+        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
+        jNacCho.setDate(lista.get(pos).getNacimiento());
+        tfPassMod.setText(lista.get(pos).getPassword());
+        SexoMod.setSelectedItem(lista.get(pos).getSexo());
+
+    }//GEN-LAST:event_EmpleadoPanelMouseClicked
+
+    private void IdentidadListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdentidadListaMouseClicked
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_IdentidadListaMouseClicked
+
+    private void IdentidadListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_IdentidadListaItemStateChanged
+        // TODO add your handling code here:
+        int pos = 0;
+        for (int i = 0; i < lista.size(); i++) {
+
+            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
+                pos = i;
+            }
+
+        }
+        tfNomMod.setText(lista.get(pos).getNombre());
+        tfApeMod.setText(lista.get(pos).getApellido());
+        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
+        jNacCho.setDate(lista.get(pos).getNacimiento());
+        tfPassMod.setText(lista.get(pos).getPassword());
+        SexoMod.setSelectedItem(lista.get(pos).getSexo());
+    }//GEN-LAST:event_IdentidadListaItemStateChanged
+
+    private void EmpleadoScreenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoScreenFocusGained
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_EmpleadoScreenFocusGained
+
+    private void EmpleadoScreenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadoScreenMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmpleadoScreenMouseMoved
+
+    private void EmpleadoScreenComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EmpleadoScreenComponentShown
+        // TODO add your handling code here:
+        lista.add(civ);
+        lista.add(new Civil("Jaime", "Rodrigues", "homelochino", "Femenino", "Comayagua", "1203-1980-28301", new Date()));
+
+        for (int i = 0; i < lista.size(); i++) {
+
+            IdentidadLista.addItem(lista.get(i).getIdentidad());
+
+        }
+    }//GEN-LAST:event_EmpleadoScreenComponentShown
 
     /**
      * @param args the command line arguments
@@ -350,16 +563,24 @@ public class ServicioBoroa extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServicioBoroa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServicioBoroa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServicioBoroa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServicioBoroa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServicioBoroa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServicioBoroa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServicioBoroa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ServicioBoroa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -373,25 +594,38 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CerrarSesion;
+    private javax.swing.JComboBox<String> Departemento;
     private javax.swing.JTabbedPane EmpleadoPanel;
     private javax.swing.JFrame EmpleadoScreen;
     private javax.swing.JComboBox<String> IdentidadLista;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JLabel LoginTitle;
+    private javax.swing.JComboBox<String> SexoMod;
     private javax.swing.JLabel UsuarioActivo;
     private javax.swing.JButton bLogin;
+    private javax.swing.JButton bModificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private com.toedter.calendar.JDateChooser jNacCho;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField tfApeMod;
     private javax.swing.JTextField tfNom;
+    private javax.swing.JTextField tfNomMod;
     private javax.swing.JTextField tfPass;
+    private javax.swing.JTextField tfPassMod;
     // End of variables declaration//GEN-END:variables
 }
