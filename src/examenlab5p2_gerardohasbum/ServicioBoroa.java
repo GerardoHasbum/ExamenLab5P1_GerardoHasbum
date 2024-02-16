@@ -442,6 +442,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
             EmpleadoScreen.setVisible(true);
             llenarTable();
             UsuarioActivo.setText(empcom);
+            llenarCombo();
 
         } else if ((inpnom.equals(civcom) && inppass.equals(civpass))) {
 
@@ -496,7 +497,20 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void EmpleadoPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoPanelFocusGained
         // TODO add your handling code here:
+        int pos = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            String id = lista.get(i).getIdentidad();
+            if (id.equals(IdentidadLista.getSelectedItem())) {
+                pos = i;
+            }
 
+        }
+        tfNomMod.setText(lista.get(pos).getNombre());
+        tfApeMod.setText(lista.get(pos).getApellido());
+        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
+        jNacCho.setDate(lista.get(pos).getNacimiento());
+        tfPassMod.setText(lista.get(pos).getPassword());
+        SexoMod.setSelectedItem(lista.get(pos).getSexo());
 
     }//GEN-LAST:event_EmpleadoPanelFocusGained
 
@@ -512,20 +526,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void IdentidadListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_IdentidadListaItemStateChanged
         // TODO add your handling code here:
-        int pos = 0;
-        for (int i = 0; i < lista.size(); i++) {
 
-            if (lista.get(i).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
-                pos = i;
-            }
-
-        }
-        tfNomMod.setText(lista.get(pos).getNombre());
-        tfApeMod.setText(lista.get(pos).getApellido());
-        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
-        jNacCho.setDate(lista.get(pos).getNacimiento());
-        tfPassMod.setText(lista.get(pos).getPassword());
-        SexoMod.setSelectedItem(lista.get(pos).getSexo());
     }//GEN-LAST:event_IdentidadListaItemStateChanged
 
     private void EmpleadoScreenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoScreenFocusGained
@@ -560,6 +561,21 @@ public class ServicioBoroa extends javax.swing.JFrame {
         }
 
         CivilTabla.setModel(modelo);
+    }
+    
+    public void llenarCombo(){
+        
+        JComboBox modelo = new JComboBox();
+        
+        for (int i = 0; i < lista.size(); i++) {
+            
+            Object modelo2 = lista.get(i).getIdentidad();
+            
+            modelo.addItem(modelo2);
+            
+        }
+        
+        IdentidadLista = modelo;
     }
 
     public void VaciarCombo() {
