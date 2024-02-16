@@ -10,13 +10,6 @@ public static Scanner jhin = new Scanner(System.in);
     
         ServicioBoroa s = new ServicioBoroa();
         
-        System.out.println("Ingrese su nombre completo: ");
-        String nombre = jhin.nextLine();
-        System.out.println("Ingrese su Contrasenia: ");
-        String password = jhin.nextLine();
-        
-        
-        
         s.setVisible(true);
     
     }
