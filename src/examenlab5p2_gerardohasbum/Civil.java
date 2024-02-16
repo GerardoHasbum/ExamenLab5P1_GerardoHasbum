@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Civil extends Usuarios{
     
-    ArrayList<Tramites> tramites = new ArrayList();
+    public ArrayList<Tramites> tramites = new ArrayList();
 
     public Civil() {
     }
