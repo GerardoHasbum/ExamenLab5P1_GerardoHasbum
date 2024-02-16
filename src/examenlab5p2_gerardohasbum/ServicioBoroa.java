@@ -6,7 +6,11 @@ package examenlab5p2_gerardohasbum;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,14 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class ServicioBoroa extends javax.swing.JFrame {
 
-    public static Empleado emp = new Empleado("Programador", "Jefe", "1423 dias", "Dev", "Boroa", "Boroa123", "Masculino", "Cortes", "0602-2000-17526", new Date());
-    public static Civil civ = new Civil("User", "Rin", "Rin123", "Masculino", "Francisco Morazan", "0801-2005-20386", new Date());
-    public static ArrayList<Usuarios> lista = new ArrayList();
+    ArrayList<Usuarios> lista = new ArrayList();
+    Empleado emp = new Empleado("Programador", "Jefe", "1423 dias", "Dev", "Boroa", "Boroa123", "Masculino", "Cortes", "0602-2000-17526", new Date());
+    Civil civ = new Civil("User", "Rin", "Rin123", "Masculino", "Francisco Morazan", "0801-2005-20386", new Date());
 
     /**
      * Creates new form ServicioBoroa
      */
     public ServicioBoroa() {
+
+        lista.add(civ);
+
+        lista.add(
+                new Civil("Jaime", "Rodrigues", "homelochino", "Femenino", "Comayagua", "1203-1980-28301", new Date()));
+
         initComponents();
     }
 
@@ -35,7 +45,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        CivilTabla = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -95,12 +105,9 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
         jLabel5.setText("Tramites: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        CivilTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre Completo", "No. Identidad", "Fecha Nacimiento"
@@ -109,13 +116,20 @@ public class ServicioBoroa extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable1);
+        CivilTabla.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(CivilTabla);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -426,6 +440,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
             this.setVisible(false);
             EmpleadoScreen.pack();
             EmpleadoScreen.setVisible(true);
+            llenarTable();
             UsuarioActivo.setText(empcom);
 
         } else if ((inpnom.equals(civcom) && inppass.equals(civpass))) {
@@ -440,10 +455,11 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
         // TODO add your handling code here:
-        IdentidadLista.removeAllItems();
+        IdentidadLista.removeAll();
         this.setVisible(true);
         EmpleadoScreen.setVisible(false);
-        
+        VaciarCombo();
+        VaciarTabla();
     }//GEN-LAST:event_CerrarSesionMouseClicked
 
     private void IdentidadListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentidadListaActionPerformed
@@ -463,7 +479,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         int pos = 0;
         for (int i = 0; i < lista.size(); i++) {
 
-            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
+            if (lista.get(i).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
                 pos = i;
             }
 
@@ -486,21 +502,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void EmpleadoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadoPanelMouseClicked
         // TODO add your handling code here:
-        int pos = 0;
-        for (int i = 0; i < lista.size(); i++) {
-
-            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
-                pos = i;
-            }
-
-        }
-        tfNomMod.setText(lista.get(pos).getNombre());
-        tfApeMod.setText(lista.get(pos).getApellido());
-        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
-        jNacCho.setDate(lista.get(pos).getNacimiento());
-        tfPassMod.setText(lista.get(pos).getPassword());
-        SexoMod.setSelectedItem(lista.get(pos).getSexo());
-
     }//GEN-LAST:event_EmpleadoPanelMouseClicked
 
     private void IdentidadListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdentidadListaMouseClicked
@@ -514,7 +515,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         int pos = 0;
         for (int i = 0; i < lista.size(); i++) {
 
-            if (lista.get(0).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
+            if (lista.get(i).getIdentidad().equals(IdentidadLista.getSelectedItem())) {
                 pos = i;
             }
 
@@ -539,15 +540,41 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void EmpleadoScreenComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EmpleadoScreenComponentShown
         // TODO add your handling code here:
-        lista.add(civ);
-        lista.add(new Civil("Jaime", "Rodrigues", "homelochino", "Femenino", "Comayagua", "1203-1980-28301", new Date()));
-
         for (int i = 0; i < lista.size(); i++) {
 
             IdentidadLista.addItem(lista.get(i).getIdentidad());
 
         }
     }//GEN-LAST:event_EmpleadoScreenComponentShown
+
+    public void llenarTable() {
+
+        DefaultTableModel modelo = (DefaultTableModel) CivilTabla.getModel();
+
+        for (int i = 0; i < lista.size(); i++) {
+
+            Object[] modelo2 = {lista.get(i).getNombre() + " " + lista.get(i).getApellido(), lista.get(i).getIdentidad(), lista.get(i).getNacimiento()};
+
+            modelo.addRow(modelo2);
+
+        }
+
+        CivilTabla.setModel(modelo);
+    }
+
+    public void VaciarCombo() {
+
+        JComboBox modelo = new JComboBox();
+        IdentidadLista = modelo;
+
+    }
+
+    public void VaciarTabla() {
+
+        JTable modelo = new JTable();
+        CivilTabla = modelo;
+
+    }
 
     /**
      * @param args the command line arguments
@@ -594,6 +621,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CerrarSesion;
+    private javax.swing.JTable CivilTabla;
     private javax.swing.JComboBox<String> Departemento;
     private javax.swing.JTabbedPane EmpleadoPanel;
     private javax.swing.JFrame EmpleadoScreen;
@@ -620,7 +648,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField tfApeMod;
     private javax.swing.JTextField tfNom;
