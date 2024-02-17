@@ -9,7 +9,7 @@ public static Scanner jhin = new Scanner(System.in);
     public static void main(String[] args) {
     
         ServicioBoroa s = new ServicioBoroa();
-        
+        s.Unicosbeibis();
         s.setVisible(true);
     
     }
