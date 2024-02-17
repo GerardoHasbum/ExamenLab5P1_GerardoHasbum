@@ -28,9 +28,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
     public ServicioBoroa() {
 
         lista.add(civ);
-
-        lista.add(
-                new Civil("Jaime", "Rodrigues", "homelochino", "Femenino", "Comayagua", "1203-1980-28301", new Date()));
+        lista.add(new Civil("Jaime", "Rodriguez", "holi", "Femenino", "Francisco Morazan", "0801-2000-17289", new Date()));
 
         initComponents();
     }
@@ -49,7 +47,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        IdentidadLista = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         tfNomMod = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -63,6 +60,7 @@ public class ServicioBoroa extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         Departemento = new javax.swing.JComboBox<>();
         bModificar = new javax.swing.JButton();
+        IdentidadLista = new javax.swing.JComboBox<>();
         CerrarSesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         UsuarioActivo = new javax.swing.JLabel();
@@ -90,6 +88,11 @@ public class ServicioBoroa extends javax.swing.JFrame {
             }
         });
 
+        EmpleadoPanel.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                EmpleadoPanelStateChanged(evt);
+            }
+        });
         EmpleadoPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 EmpleadoPanelFocusGained(evt);
@@ -176,23 +179,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
         EmpleadoPanel.addTab("Inforamacion Civiles", jPanel1);
 
-        IdentidadLista.setToolTipText("");
-        IdentidadLista.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                IdentidadListaItemStateChanged(evt);
-            }
-        });
-        IdentidadLista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                IdentidadListaMouseClicked(evt);
-            }
-        });
-        IdentidadLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdentidadListaActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Nombre: ");
 
         jLabel7.setText("Apellido: ");
@@ -221,6 +207,12 @@ public class ServicioBoroa extends javax.swing.JFrame {
             }
         });
 
+        IdentidadLista.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                IdentidadListaItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -229,7 +221,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,15 +236,16 @@ public class ServicioBoroa extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfApeMod)
                             .addComponent(jNacCho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(bModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(373, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(20, 20, 20)
                 .addComponent(IdentidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
@@ -451,23 +443,15 @@ public class ServicioBoroa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data incorrecta\nIntentar de nuevo");
 
         }
-
     }//GEN-LAST:event_bLoginMouseClicked
 
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
         // TODO add your handling code here:
-        IdentidadLista.removeAll();
         this.setVisible(true);
         EmpleadoScreen.setVisible(false);
         VaciarCombo();
         VaciarTabla();
     }//GEN-LAST:event_CerrarSesionMouseClicked
-
-    private void IdentidadListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentidadListaActionPerformed
-        // TODO add your handling code here:
-
-        String id = (String) IdentidadLista.getSelectedItem();
-    }//GEN-LAST:event_IdentidadListaActionPerformed
 
     private void bModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarActionPerformed
         // TODO add your handling code here:
@@ -497,37 +481,13 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void EmpleadoPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoPanelFocusGained
         // TODO add your handling code here:
-        int pos = 0;
-        for (int i = 0; i < lista.size(); i++) {
-            String id = lista.get(i).getIdentidad();
-            if (id.equals(IdentidadLista.getSelectedItem())) {
-                pos = i;
-            }
 
-        }
-        tfNomMod.setText(lista.get(pos).getNombre());
-        tfApeMod.setText(lista.get(pos).getApellido());
-        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
-        jNacCho.setDate(lista.get(pos).getNacimiento());
-        tfPassMod.setText(lista.get(pos).getPassword());
-        SexoMod.setSelectedItem(lista.get(pos).getSexo());
 
     }//GEN-LAST:event_EmpleadoPanelFocusGained
 
     private void EmpleadoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadoPanelMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_EmpleadoPanelMouseClicked
-
-    private void IdentidadListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdentidadListaMouseClicked
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_IdentidadListaMouseClicked
-
-    private void IdentidadListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_IdentidadListaItemStateChanged
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_IdentidadListaItemStateChanged
 
     private void EmpleadoScreenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmpleadoScreenFocusGained
         // TODO add your handling code here:
@@ -541,12 +501,33 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
     private void EmpleadoScreenComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EmpleadoScreenComponentShown
         // TODO add your handling code here:
-        for (int i = 0; i < lista.size(); i++) {
 
-            IdentidadLista.addItem(lista.get(i).getIdentidad());
+    }//GEN-LAST:event_EmpleadoScreenComponentShown
+
+    private void EmpleadoPanelStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_EmpleadoPanelStateChanged
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_EmpleadoPanelStateChanged
+
+    private void IdentidadListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_IdentidadListaItemStateChanged
+        // TODO add your handling code here:
+        int pos = 0;
+
+        for (int i = 0; i < lista.size(); i++) {
+            String id = lista.get(i).getIdentidad();
+            if (id.equals(IdentidadLista.getSelectedItem())) {
+                pos = i;
+            }
 
         }
-    }//GEN-LAST:event_EmpleadoScreenComponentShown
+        tfNomMod.setText(lista.get(pos).getNombre());
+        tfApeMod.setText(lista.get(pos).getApellido());
+        Departemento.setSelectedItem(lista.get(pos).getDepartamento());
+        jNacCho.setDate(lista.get(pos).getNacimiento());
+        tfPassMod.setText(lista.get(pos).getPassword());
+        SexoMod.setSelectedItem(lista.get(pos).getSexo());
+    }//GEN-LAST:event_IdentidadListaItemStateChanged
 
     public void llenarTable() {
 
@@ -562,20 +543,18 @@ public class ServicioBoroa extends javax.swing.JFrame {
 
         CivilTabla.setModel(modelo);
     }
-    
-    public void llenarCombo(){
-        
-        JComboBox modelo = new JComboBox();
-        
+
+    public void llenarCombo() {
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) IdentidadLista.getModel();
+
         for (int i = 0; i < lista.size(); i++) {
-            
+
             Object modelo2 = lista.get(i).getIdentidad();
-            
-            modelo.addItem(modelo2);
-            
+            modelo.addElement(modelo2);
+
         }
-        
-        IdentidadLista = modelo;
+        IdentidadLista.setModel(modelo);
+
     }
 
     public void VaciarCombo() {
