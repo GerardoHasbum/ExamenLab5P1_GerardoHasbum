@@ -897,8 +897,6 @@ public class ServicioBoroa extends javax.swing.JFrame {
             
             String hola = x.getIdentidad();
             hola = (String)hola.substring(0, 4);
-            System.out.println(hola);
-            
             
         }
         
